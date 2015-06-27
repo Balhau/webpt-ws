@@ -274,3 +274,29 @@ You'll end with the following response
 }
 
 The web service is paginated because the amount of results is big and this way we can fetch the data in a buffered way avoiding as a result heavy computations and large amount of data being transmitted between client and server in only one communication. The *pagenumber* and *itemsperpage* are configurable as we want but is advisable to use a number of *itemsperpage* relatively low to avoid the problems mentioned.
+
+
+The second webservice you can use is the following
+
+    http://localhost:8080/ws/ine/service/{url64}
+
+This will return the statistical data for one of the entries you got with the previous web service.
+
+If for example you choose the
+
+    {
+            "url": "http://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0001700&contexto=bd&selTab=tab2",
+            "desc": "Abstention rate in the elections to European Parliament (%) by Place of residence (NUTS - 2001); Irregular"
+        }
+
+Which means that you want to get the statistical data related with *Abstention rate in the Elections to European Parliament* then you must call
+
+    http://localhost:8080/ws/ine/service/aHR0cDovL3d3dy5pbmUucHQveHBvcnRhbC94bWFpbj94cGlkPUlORSZ4cGdpZD1pbmVfaW5kaWNhZG9yZXMmaW5kT2NvcnJDb2Q9MDAwMTY4NyZjb250ZXh0bz1iZCZzZWxUYWI9dGFiMg==
+
+You'll need to convert the *url*
+
+    http://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_indicadores&indOcorrCod=0001700&contexto=bd&selTab=tab2
+
+into a base64 representation
+
+    aHR0cDovL3d3dy5pbmUucHQveHBvcnRhbC94bWFpbj94cGlkPUlORSZ4cGdpZD1pbmVfaW5kaWNhZG9yZXMmaW5kT2NvcnJDb2Q9MDAwMTY4NyZjb250ZXh0bz1iZCZzZWxUYWI9dGFiMg==
