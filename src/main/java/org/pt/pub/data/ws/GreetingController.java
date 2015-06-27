@@ -1,4 +1,4 @@
-package hello;
+package org.pt.pub.data.ws;
 
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;

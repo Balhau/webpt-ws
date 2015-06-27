@@ -1,4 +1,4 @@
-package hello;
+package org.pt.pub.data.ws;
 
 public class Greeting {
 
