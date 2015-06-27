@@ -24,32 +24,22 @@ public class BdpController {
 	
 	@RequestMapping("/categories")
 	public WebResult<TableData> getBdpCategories(){
-		TableData tbd;
-		try{
-			tbd=bdp.getCategories();
-		} catch(Exception ex){
-			return WebResult.<TableData>fail(ex.getMessage());
-		}
-		return WebResult.<TableData>ok(tbd);
+		return WebResult.<TableData>wrap(
+				()-> bdp.getCategories()
+		);
 	}
 	
 	@RequestMapping("/category/{categorie}")
 	public WebResult<TableData> getBdpSeries(@PathVariable("categorie") String categorie){
-		TableData tbd;
-		try{
-			return WebResult.<TableData>ok(bdp.getSeriesForCategorie(categorie));
-		}catch(Exception ex){
-			return WebResult.<TableData>fail(ex.getMessage());
-		}
+		return WebResult.<TableData>wrap(
+				()-> bdp.getSeriesForCategorie(categorie)
+		);
 	}
 	
 	@RequestMapping("/category/serie/{id}")
 	public WebResult<List<TableData>> getBdpSerieData(@PathVariable("id") String id){
-		TableData tbd;
-		try{
-			return WebResult.<List<TableData>>ok(bdp.getDataForSeries(StringUtils.asList(id), new Date()));
-		}catch (Exception ex){
-		  return WebResult.<List<TableData>>fail("MESSAGE: "+id);
-		}
+		return WebResult.<List<TableData>>wrap(
+				()->bdp.getDataForSeries(StringUtils.asList(id), new Date())
+		);
 	}
 }

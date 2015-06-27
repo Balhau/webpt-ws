@@ -1,6 +1,13 @@
 package org.pt.pub.data.ws.domain;
 
 
+/**
+ * This object represents a general response from the controllers. This is usefull to encapsulate the messaging
+ * and error handling on the controller responses
+ * @author balhau
+ *
+ * @param <T>
+ */
 public class WebResult<T> {
 	
 	public static final String OK="OK";
@@ -42,6 +49,22 @@ public class WebResult<T> {
 	public static <T> WebResult<T> fail(String errorMessage){
 		return new WebResult<T>().error(true).statusMessage(errorMessage);
 	}
+	
+	/**
+	 * This is method encapsulates the actions that create {@link WebResult} with all the logic
+	 * to deal with exception handling. This way the controllers will not need to manage the error handling 
+	 * @param wrapper {@link Wrapper} Functional interface to ease the implementation of the actions
+	 * @return {@link WebResult} To be returned by the controller
+	 */
+	public static <T> WebResult<T> wrap(Wrapper<T> wrapper){
+		try{
+			T res=wrapper.wrap();
+			return WebResult.<T>ok(res);
+		}catch(Exception ex){
+			return WebResult.<T>fail(ex.getMessage());
+		}
+	}
+	
 	
 	//Builder Methods
 	public WebResult<T> message(T message){
