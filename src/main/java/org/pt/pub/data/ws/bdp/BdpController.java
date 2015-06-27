@@ -1,11 +1,16 @@
 package org.pt.pub.data.ws.bdp;
 
+import java.util.Date;
+import java.util.List;
+
 import org.pt.pub.data.sources.bdp.BancoPortugal;
 import org.pt.pub.data.sources.bdp.domain.TableData;
 import org.pt.pub.data.ws.domain.WebResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.balhau.utils.StringUtils;
 
 @RestController
 @RequestMapping("/ws/bdp")
@@ -38,13 +43,13 @@ public class BdpController {
 		}
 	}
 	
-	@RequestMapping("/category/serie/{serie}/")
-	public WebResult<TableData> getBdpSerieData(@PathVariable("serie") String serie){
+	@RequestMapping("/category/serie/{id}")
+	public WebResult<List<TableData>> getBdpSerieData(@PathVariable("id") String id){
 		TableData tbd;
 		try{
-			return WebResult.<TableData>ok(bdp.getDataForSeries(seriesList, endDate))
+			return WebResult.<List<TableData>>ok(bdp.getDataForSeries(StringUtils.asList(id), new Date()));
 		}catch (Exception ex){
-		  return WebResult.<TableData>fail(ex.getMessage());
+		  return WebResult.<List<TableData>>fail("MESSAGE: "+id);
 		}
 	}
 }
