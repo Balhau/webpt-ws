@@ -2,8 +2,8 @@ package org.pt.pub.data.ws.ipma;
 
 import java.util.List;
 
-
 import org.pt.pub.data.sources.ipma.Ipma;
+import org.pt.pub.data.sources.ipma.domain.GeoWeather;
 import org.pt.pub.data.ws.domain.WebResult;
 import org.pt.pub.global.domain.TableData;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +23,10 @@ public class IpmaController {
 		this.ipma=new Ipma();
 	}
 	
-	@RequestMapping("/forecast/sea")
-	public WebResult<List<TableData>> getSeaForecast(){
-		return WebResult.<List<TableData>>wrap(()->{
-			return ipma.getSeaInformation();
+	@RequestMapping("/forecast/zeroday")
+	public WebResult<List<GeoWeather<?>>> forecastZeroDay(){
+		return WebResult.<List<GeoWeather<?>>>wrap(()->{
+			return ipma.getForecastDayZero();
 		});
 	}
 }
