@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.pt.pub.data.sources.ipma.Ipma;
 import org.pt.pub.data.sources.ipma.domain.BeachEntry;
+import org.pt.pub.data.sources.ipma.domain.BeachInfo;
 import org.pt.pub.data.sources.ipma.domain.GeoWeather;
 import org.pt.pub.data.ws.domain.WebResult;
 import org.pt.pub.global.domain.TableData;
@@ -41,9 +42,9 @@ public class IpmaController {
 	}
 	
 	@RequestMapping("/forecast/beachinfo/{idbeach}")
-	public WebResult<Object> getBeachInfo(
+	public WebResult<List<BeachInfo>> getBeachInfo(
 			@PathVariable("idbeach") int idbeach){
-		return WebResult.<Object>wrap(()->{
+		return WebResult.<List<BeachInfo>>wrap(()->{
 			return null;
 		});
 	}
