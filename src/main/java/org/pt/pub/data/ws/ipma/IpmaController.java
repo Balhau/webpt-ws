@@ -3,9 +3,11 @@ package org.pt.pub.data.ws.ipma;
 import java.util.List;
 
 import org.pt.pub.data.sources.ipma.Ipma;
+import org.pt.pub.data.sources.ipma.domain.BeachEntry;
 import org.pt.pub.data.sources.ipma.domain.GeoWeather;
 import org.pt.pub.data.ws.domain.WebResult;
 import org.pt.pub.global.domain.TableData;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,10 +25,27 @@ public class IpmaController {
 		this.ipma=new Ipma();
 	}
 	
-	@RequestMapping("/forecast/zeroday")
-	public WebResult<List<GeoWeather<?>>> forecastZeroDay(){
-		return WebResult.<List<GeoWeather<?>>>wrap(()->{
-			return ipma.getForecastDayZero();
+	@RequestMapping("/forecast/{day}")
+	public WebResult<List<GeoWeather<?>>> forecastDay(@PathVariable("day") int day){
+		return WebResult.<List<GeoWeather<?>>>wrapWithException(()->{
+			return ipma.getForecastDay(day);
+		},new Exception("Invalid request. Maybe because day request is not available. "
+				+ "Offset day should be between [0,2]"));
+	}
+	
+	@RequestMapping("/forecast/beachlist")
+	public WebResult<List<BeachEntry>> getBeachList(){
+		return WebResult.<List<BeachEntry>>wrap(()->{
+			return ipma.getBeachEntries();
 		});
 	}
+	
+	@RequestMapping("/forecast/beachinfo/{idbeach}")
+	public WebResult<Object> getBeachInfo(
+			@PathVariable("idbeach") int idbeach){
+		return WebResult.<Object>wrap(()->{
+			return null;
+		});
+	}
+	
 }

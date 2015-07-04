@@ -65,6 +65,15 @@ public class WebResult<T> {
 		}
 	}
 	
+	public static <T> WebResult<T> wrapWithException(Wrapper<T> wrapper, Exception ex){
+		try{
+			T res=wrapper.wrap();
+			return WebResult.<T>ok(res);
+		}catch(Exception exp){
+			return WebResult.<T>fail(ex.getMessage());
+		}
+	}
+	
 	
 	//Builder Methods
 	public WebResult<T> message(T message){
