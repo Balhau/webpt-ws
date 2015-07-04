@@ -45,7 +45,7 @@ public class IpmaController {
 	public WebResult<List<BeachInfo>> getBeachInfo(
 			@PathVariable("idbeach") int idbeach){
 		return WebResult.<List<BeachInfo>>wrap(()->{
-			return null;
+			return ipma.getBeachInfo(idbeach);
 		});
 	}
 	
