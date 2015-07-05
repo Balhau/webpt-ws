@@ -1,5 +1,7 @@
 package org.pt.pub.data.ws.ipma;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.pt.pub.data.sources.ipma.Ipma;
@@ -7,6 +9,8 @@ import org.pt.pub.data.sources.ipma.domain.BeachEntry;
 import org.pt.pub.data.sources.ipma.domain.GeoWeather;
 import org.pt.pub.data.ws.domain.WebResult;
 import org.pt.pub.global.domain.TableData;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,6 +49,19 @@ public class IpmaController {
 			@PathVariable("idbeach") int idbeach){
 		return WebResult.<List<TableData>>wrap(()->{
 			return ipma.getBeachInfo(idbeach);
+		});
+	}
+	
+	@RequestMapping("/forecast/seismic/{fromdate}")
+	public WebResult<List<TableData>> getSeismicInfo(
+			@PathVariable("fromdate")
+			@DateTimeFormat(iso=ISO.DATE)
+			Date fromDate
+	){
+		return WebResult.<List<TableData>>wrap(()->{
+			Calendar c=Calendar.getInstance();
+			c.setTime(fromDate);
+			return ipma.getSeismicActivity(fromDate);
 		});
 	}
 	
