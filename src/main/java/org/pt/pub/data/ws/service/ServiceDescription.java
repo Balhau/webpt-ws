@@ -43,7 +43,6 @@ public class ServiceDescription {
 				describeClass(lclass,services);
 			}
 		}
-		System.out.println(services.size());
 		return services;
 	}
 	
