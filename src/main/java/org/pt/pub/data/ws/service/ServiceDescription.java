@@ -66,10 +66,15 @@ public class ServiceDescription {
 	}
 	
 	private List<String> extractMethodVariable(Method method){
+		Annotation[][] an;
 		Parameter[] params=method.getParameters();
+		an=params.length!=0?method.getParameterAnnotations():null;
 		List<String> nparams=new ArrayList<String>();
+		int i=0;
 		for(Parameter param : params){
-			nparams.add(param.getName()+":"+param.getType().getName());
+			String desc=an!=null?((PathVariable)an[i][0]).value():"";
+			nparams.add(param.getName()+","+param.getType().getName()+", "+desc);
+			i++;
 		}
 		return nparams;
 	}
