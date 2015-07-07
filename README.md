@@ -26,107 +26,101 @@ to
 By doing this you'll get a response like the following
 
     {
-      "message": [
-        {
-          "className": "org.pt.pub.data.ws.ipma.IpmaController",
-          "controllerName": "getBeachList",
-          "arguments": [
-
-          ],
-          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/ipma], consumes=[])"
-        },
-        {
-          "className": "org.pt.pub.data.ws.ipma.IpmaController",
-          "controllerName": "getBeachInfo",
-          "arguments": [
-            "arg0,int, idbeach"
-          ],
-          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/ipma], consumes=[])"
-        },
-        {
-          "className": "org.pt.pub.data.ws.ipma.IpmaController",
-          "controllerName": "getSeismicInfo",
-          "arguments": [
-            "arg0,java.util.Date, fromdate"
-          ],
-          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/ipma], consumes=[])"
-        },
-        {
-          "className": "org.pt.pub.data.ws.ipma.IpmaController",
-          "controllerName": "forecastDay",
-          "arguments": [
-            "arg0,int, day"
-          ],
-          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/ipma], consumes=[])"
-        },
-        {
-          "className": "org.pt.pub.data.ws.bdp.BdpController",
-          "controllerName": "getBdpCategories",
-          "arguments": [
-
-          ],
-          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/bdp], consumes=[])"
-        },
-        {
-          "className": "org.pt.pub.data.ws.bdp.BdpController",
-          "controllerName": "getBdpSeries",
-          "arguments": [
-            "arg0,java.lang.String, categorie"
-          ],
-          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/bdp], consumes=[])"
-        },
-        {
-          "className": "org.pt.pub.data.ws.bdp.BdpController",
-          "controllerName": "getBdpSerieData",
-          "arguments": [
-            "arg0,java.lang.String, id"
-          ],
-          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/bdp], consumes=[])"
-        },
-        {
-          "className": "org.pt.pub.data.ws.ine.IneController",
-          "controllerName": "getAvailableServices",
-          "arguments": [
-            "arg0,int, pagenumber",
-            "arg1,int, numperpage"
-          ],
-          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/ine], consumes=[])"
-        },
-        {
-          "className": "org.pt.pub.data.ws.ine.IneController",
-          "controllerName": "getServiceData",
-          "arguments": [
-            "arg0,java.lang.String, b64url"
-          ],
-          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/ine], consumes=[])"
-        },
-        {
-          "className": "org.pt.pub.data.ws.accuweather.AccuWeatherController",
-          "controllerName": "getLocationWeather",
-          "arguments": [
-            "arg0,java.lang.String, location"
-          ],
-          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/weather\/accu], consumes=[])"
-        },
-        {
-          "className": "org.pt.pub.data.ws.accuweather.AccuWeatherController",
-          "controllerName": "getLocations",
-          "arguments": [
-            "arg0,java.lang.String, location"
-          ],
-          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/weather\/accu], consumes=[])"
-        },
-        {
-          "className": "org.pt.pub.data.ws.RestDescription",
-          "controllerName": "describeServices",
-          "arguments": [
-
-          ],
-          "controllPath": ""
-        }
-      ],
-      "error": false,
-      "statusMessage": "OK"
+      message: [
+      {
+        className: "org.pt.pub.data.ws.ipma.IpmaController",
+        controllerName: "getBeachList",
+        arguments: [ ],
+        controllPath: "/ws/ipma/forecast/beachlist"
+      },
+      {
+        className: "org.pt.pub.data.ws.ipma.IpmaController",
+        controllerName: "getBeachInfo",
+        arguments: [
+          "arg0,int, idbeach"
+        ],
+        controllPath: "/ws/ipma/forecast/beachinfo/{idbeach}"
+      },
+      {
+        className: "org.pt.pub.data.ws.ipma.IpmaController",
+        controllerName: "getSeismicInfo",
+        arguments: [
+          "arg0,java.util.Date, fromdate"
+        ],
+        controllPath: "/ws/ipma/forecast/seismic/{fromdate}"
+      },
+      {
+        className: "org.pt.pub.data.ws.ipma.IpmaController",
+        controllerName: "forecastDay",
+        arguments: [
+          "arg0,int, day"
+        ],
+        controllPath: "/ws/ipma/forecast/{day}"
+      },
+      {
+        className: "org.pt.pub.data.ws.bdp.BdpController",
+        controllerName: "getBdpCategories",
+        arguments: [ ],
+        controllPath: "/ws/bdp/categories"
+      },
+      {
+        className: "org.pt.pub.data.ws.bdp.BdpController",
+        controllerName: "getBdpSeries",
+        arguments: [
+          "arg0,java.lang.String, categorie"
+        ],
+        controllPath: "/ws/bdp/category/{categorie}"
+      },
+      {
+        className: "org.pt.pub.data.ws.bdp.BdpController",
+        controllerName: "getBdpSerieData",
+        arguments: [
+          "arg0,java.lang.String, id"
+        ],
+        controllPath: "/ws/bdp/category/serie/{id}"
+      },
+      {
+        className: "org.pt.pub.data.ws.ine.IneController",
+        controllerName: "getAvailableServices",
+        arguments: [
+          "arg0,int, pagenumber",
+          "arg1,int, numperpage"
+        ],
+        controllPath: "/ws/ine/services/{pagenumber}/{numperpage}"
+      },
+      {
+        className: "org.pt.pub.data.ws.ine.IneController",
+        controllerName: "getServiceData",
+        arguments: [
+          "arg0,java.lang.String, b64url"
+        ],
+        controllPath: "/ws/ine/service/{b64url}"
+      },
+      {
+        className: "org.pt.pub.data.ws.accuweather.AccuWeatherController",
+        controllerName: "getLocationWeather",
+        arguments: [
+          "arg0,java.lang.String, location"
+        ],
+        controllPath: "/ws/weather/accu/location/{location}"
+      },
+      {
+        className: "org.pt.pub.data.ws.accuweather.AccuWeatherController",
+        controllerName: "getLocations",
+        arguments: [
+          "arg0,java.lang.String, location"
+        ],
+        controllPath: "/ws/weather/accu/locations/{location}"
+      },
+      {
+        className: "org.pt.pub.data.ws.RestDescription",
+        controllerName: "describeServices",
+        arguments: [ ],
+        controllPath: "/"
+      }
+    ],
+    error: false,
+    statusMessage: "OK"
     }
 
 This uses reflection to list all the spring controllers that
