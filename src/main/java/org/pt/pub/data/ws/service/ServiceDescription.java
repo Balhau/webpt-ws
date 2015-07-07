@@ -51,14 +51,16 @@ public class ServiceDescription {
 		RequestMapping aux;
 		if(loadedClass.getAnnotation(RestController.class)!=null){
 			aux=(RequestMapping)loadedClass.getAnnotation(RequestMapping.class);
-			String cpath=aux!=null?aux.toString():"";
+			String cpath=aux!=null?aux.value()[0]:"";
 			for(Method method:methods){
 				if(isController(method)){
+					RequestMapping aux2=(RequestMapping)method.getAnnotation(RequestMapping.class);
+					String mpath=aux2!=null?aux2.value()[0]:"";
 					ServiceDescriptionDomain d=new ServiceDescriptionDomain();
 					d.setArguments(extractMethodVariable(method));
 					d.setClassName(loadedClass.getName());
 					d.setControllerName(method.getName());
-					d.setControllPath(cpath);
+					d.setControllPath(cpath+mpath);
 					list.add(d);
 				}
 			}

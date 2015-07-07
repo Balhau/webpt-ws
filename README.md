@@ -3,6 +3,12 @@
 This is a web-service that lets you search for public data of portuguese (but not only) institutions. This is essentialy a front end
 for a library that implements a scrapper for a bunch of public services that render the data not in web services but in traditional web html pages. By doing this the content is not readily for consumption and leaves the programmers without a way to use this data in their projects.
 
+This project is periodically build and available in a [nexus](http://nexus.balhau.net/nexus/) server and
+you can find it here
+
+    http://nexus.balhau.net/nexus/index.html#nexus-search;quick~web
+
+
 #Web Services
 
 In this documentation we will show how to use the web-services to retrieve data by creating a tutorial document for each of the providers
@@ -127,7 +133,10 @@ This uses reflection to list all the spring controllers that
 were implemented in a specific package. So as since the
 services are implemented with spring rest api and in the
 **org.pt.pub.data.ws** package they are automatically
-listed by this service
+listed by this service.
+
+Now we will give a more detailed description about the services
+and example how to use them
 
 ##Banco de Portugal
 
@@ -421,3 +430,10 @@ You'll need to convert the *url*
 into a base64 representation
 
     aHR0cDovL3d3dy5pbmUucHQveHBvcnRhbC94bWFpbj94cGlkPUlORSZ4cGdpZD1pbmVfaW5kaWNhZG9yZXMmaW5kT2NvcnJDb2Q9MDAwMTY4NyZjb250ZXh0bz1iZCZzZWxUYWI9dGFiMg==
+
+
+## Instituto Português do Mar e da Atmosfera [(IPMA)](http://www.ipma.pt/pt/index.html)
+
+This is a public institution that give us a bunch of interesting
+information. Here we can get information about the weather
+sea conditions, seismic activity among others.
