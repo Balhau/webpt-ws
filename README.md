@@ -487,17 +487,17 @@ And you'll get a response like this
       {
         "rows": [
           {
-            "data": [
+            data: [
               "Hora",
               "Mar total (m)",
-              "Ondula\u00e7\u00e3o (m)",
-              "Dire\u00e7\u00e3o onda",
+              "Ondulação (m)",
+              "Direção onda",
               "Periodo onda",
               "Vaga (m)",
-              "Vento (n\u00f3s)",
-              "Dire\u00e7\u00e3o vento",
+              "Vento (nós)",
+              "Direção vento",
               "Escala Beaufort",
-              "Temp. \u00c1gua (\u00b0C)"
+              "Temp. Água (°C)"
             ]
           },
           {
