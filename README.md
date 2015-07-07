@@ -431,3 +431,87 @@ into a base64 representation
 This is a public institution that give us a bunch of interesting
 information. Here we can get information about the weather
 sea conditions, seismic activity among others.
+
+Looking for the service description we see that the first service available
+is described as
+
+    {
+      className: "org.pt.pub.data.ws.ipma.IpmaController",
+      controllerName: "getBeachList",
+      arguments: [ ],
+      controllPath: "/ws/ipma/forecast/beachlist"
+    }
+
+
+So by calling
+
+    http://localhost:8080/ws/ipma/forecast/beachlist
+
+we get a list of beaches available and the corresponding id.
+
+    {
+      idBeach: 203,
+      name: "Adraga"
+    },
+    {
+      idBeach: 246,
+      name: "Afife"
+    },
+    ...
+
+This id is usefull to get information about the beach with the service
+
+    {
+      className: "org.pt.pub.data.ws.ipma.IpmaController",
+      controllerName: "getBeachInfo",
+      arguments: [
+        "arg0,int, idbeach"
+      ],
+      controllPath: "/ws/ipma/forecast/beachinfo/{idbeach}"
+    },
+
+
+This  controller will give you information about the beach, for that
+you just need to replace *idbeach* with the id of the wanted beach.
+
+For example if you want to know the status of **Afife** beach you just
+need to call
+
+    http://localhost:8080/ws/ipma/forecast/beachinfo/246
+
+And you'll get a response like this
+
+
+    {
+      "message": [
+      {
+        "rows": [
+          {
+            "data": [
+              "Hora",
+              "Mar total (m)",
+              "Ondula\u00e7\u00e3o (m)",
+              "Dire\u00e7\u00e3o onda",
+              "Periodo onda",
+              "Vaga (m)",
+              "Vento (n\u00f3s)",
+              "Dire\u00e7\u00e3o vento",
+              "Escala Beaufort",
+              "Temp. \u00c1gua (\u00b0C)"
+            ]
+          },
+          {
+            "data": [
+              "00h",
+              "1.1",
+              "0.8",
+              "",
+              "5.7",
+              "0.7",
+              "9.2",
+              "",
+              "3",
+              "18.5"
+            ]
+          },
+          ...
