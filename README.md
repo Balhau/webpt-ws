@@ -6,7 +6,128 @@ for a library that implements a scrapper for a bunch of public services that ren
 #Web Services
 
 In this documentation we will show how to use the web-services to retrieve data by creating a tutorial document for each of the providers
-included in the project
+included in the project.
+
+##Overall description
+
+The webservices are described in the root path of the web application
+
+To access all the services available you just need to do a GET request
+to
+
+    http://localhost:8080/
+
+By doing this you'll get a response like the following
+
+    {
+      "message": [
+        {
+          "className": "org.pt.pub.data.ws.ipma.IpmaController",
+          "controllerName": "getBeachList",
+          "arguments": [
+
+          ],
+          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/ipma], consumes=[])"
+        },
+        {
+          "className": "org.pt.pub.data.ws.ipma.IpmaController",
+          "controllerName": "getBeachInfo",
+          "arguments": [
+            "arg0,int, idbeach"
+          ],
+          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/ipma], consumes=[])"
+        },
+        {
+          "className": "org.pt.pub.data.ws.ipma.IpmaController",
+          "controllerName": "getSeismicInfo",
+          "arguments": [
+            "arg0,java.util.Date, fromdate"
+          ],
+          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/ipma], consumes=[])"
+        },
+        {
+          "className": "org.pt.pub.data.ws.ipma.IpmaController",
+          "controllerName": "forecastDay",
+          "arguments": [
+            "arg0,int, day"
+          ],
+          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/ipma], consumes=[])"
+        },
+        {
+          "className": "org.pt.pub.data.ws.bdp.BdpController",
+          "controllerName": "getBdpCategories",
+          "arguments": [
+
+          ],
+          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/bdp], consumes=[])"
+        },
+        {
+          "className": "org.pt.pub.data.ws.bdp.BdpController",
+          "controllerName": "getBdpSeries",
+          "arguments": [
+            "arg0,java.lang.String, categorie"
+          ],
+          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/bdp], consumes=[])"
+        },
+        {
+          "className": "org.pt.pub.data.ws.bdp.BdpController",
+          "controllerName": "getBdpSerieData",
+          "arguments": [
+            "arg0,java.lang.String, id"
+          ],
+          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/bdp], consumes=[])"
+        },
+        {
+          "className": "org.pt.pub.data.ws.ine.IneController",
+          "controllerName": "getAvailableServices",
+          "arguments": [
+            "arg0,int, pagenumber",
+            "arg1,int, numperpage"
+          ],
+          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/ine], consumes=[])"
+        },
+        {
+          "className": "org.pt.pub.data.ws.ine.IneController",
+          "controllerName": "getServiceData",
+          "arguments": [
+            "arg0,java.lang.String, b64url"
+          ],
+          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/ine], consumes=[])"
+        },
+        {
+          "className": "org.pt.pub.data.ws.accuweather.AccuWeatherController",
+          "controllerName": "getLocationWeather",
+          "arguments": [
+            "arg0,java.lang.String, location"
+          ],
+          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/weather\/accu], consumes=[])"
+        },
+        {
+          "className": "org.pt.pub.data.ws.accuweather.AccuWeatherController",
+          "controllerName": "getLocations",
+          "arguments": [
+            "arg0,java.lang.String, location"
+          ],
+          "controllPath": "@org.springframework.web.bind.annotation.RequestMapping(headers=[], method=[], produces=[], name=, params=[], value=[\/ws\/weather\/accu], consumes=[])"
+        },
+        {
+          "className": "org.pt.pub.data.ws.RestDescription",
+          "controllerName": "describeServices",
+          "arguments": [
+
+          ],
+          "controllPath": ""
+        }
+      ],
+      "error": false,
+      "statusMessage": "OK"
+    }
+
+This uses reflection to list all the spring controllers that
+were implemented in a specific package. So as since the
+services are implemented with spring rest api and in the
+**org.pt.pub.data.ws** package they are automatically
+listed by this service
 
 ##Banco de Portugal
 
