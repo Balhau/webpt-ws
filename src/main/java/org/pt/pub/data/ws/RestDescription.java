@@ -1,7 +1,6 @@
 package org.pt.pub.data.ws;
 
 import java.util.List;
-import java.util.Vector;
 
 import org.pt.pub.data.ws.domain.WebResult;
 import org.pt.pub.data.ws.service.ServiceDescription;

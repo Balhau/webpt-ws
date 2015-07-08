@@ -2,8 +2,6 @@ package org.pt.pub.data.ws.rbe;
 
 import java.util.List;
 
-import org.pt.pub.data.sources.ipma.Ipma;
-import org.pt.pub.data.sources.ipma.domain.GeoWeather;
 import org.pt.pub.data.sources.rbe.Rbe;
 import org.pt.pub.data.sources.rbe.domain.RbeIndicator;
 import org.pt.pub.data.sources.rbe.domain.RbeIndicatorData;

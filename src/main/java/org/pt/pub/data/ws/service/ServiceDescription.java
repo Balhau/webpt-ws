@@ -37,6 +37,7 @@ public class ServiceDescription {
 		}
 		Field f = cls.getDeclaredField("classes");
 		f.setAccessible(true);
+		@SuppressWarnings("unchecked")
 		Vector<Class<?>> classes =  (Vector<Class<?>>) f.get(SpringApplication.class.getClassLoader());
 		for(Class<?> lclass : classes){
 			if(lclass.getName().contains(PACKAGE_SERVICE_NAME)){
