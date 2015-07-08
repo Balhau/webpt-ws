@@ -6,6 +6,7 @@ import org.pt.pub.data.sources.ipma.Ipma;
 import org.pt.pub.data.sources.ipma.domain.GeoWeather;
 import org.pt.pub.data.sources.rbe.Rbe;
 import org.pt.pub.data.sources.rbe.domain.RbeIndicator;
+import org.pt.pub.data.sources.rbe.domain.RbeIndicatorData;
 import org.pt.pub.data.ws.domain.WebResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,4 +28,14 @@ public class RbeController {
 			return rbe.getIndicators();
 		});
 	}
+	
+	@RequestMapping("/indicator/{cat}/{serie}")
+	public WebResult<RbeIndicatorData> getIndicatorData(
+			@PathVariable("cat") int cat,
+			@PathVariable("serie") int serie){
+		return WebResult.<RbeIndicatorData>wrap(()->{
+			return rbe.getIndicator(cat, serie);
+		});
+	}
+	
 }
