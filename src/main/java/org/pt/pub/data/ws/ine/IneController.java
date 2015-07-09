@@ -2,7 +2,7 @@ package org.pt.pub.data.ws.ine;
 
 import java.util.Base64;
 
-import org.pt.pub.data.sources.ine.INEDataSource;
+import org.pt.pub.data.sources.ine.Ine;
 import org.pt.pub.data.sources.ine.domain.INEResultData;
 import org.pt.pub.data.sources.ine.domain.INEServices;
 import org.pt.pub.data.ws.domain.WebResult;
@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/ws/ine")
 public class IneController {
 
-	private INEDataSource ine;
+	private Ine ine;
 	
 	public IneController(){
-		this.ine=new INEDataSource();
+		this.ine=new Ine();
 	}
 	
 	@RequestMapping("/services/{pagenumber}/{numperpage}")
