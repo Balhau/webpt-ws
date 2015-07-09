@@ -7,6 +7,9 @@ This project is periodically build and available in a [nexus](http://nexus.balha
 you can find it here
 
     http://nexus.balhau.net/nexus/index.html#nexus-search;quick~web
+    
+If you don't want to mess with nexus, setup a java runtime environment for java 8 you can use the running
+[WebPT Demo](http://webpt.balhau.net)
 
 
 #Web Services
