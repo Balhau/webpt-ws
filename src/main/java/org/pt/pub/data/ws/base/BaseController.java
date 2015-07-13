@@ -38,7 +38,7 @@ public class BaseController {
 		});
 	}
 	
-	@RequestMapping("/contract/{start}/{end}/{adjudicante}")
+	@RequestMapping("/contract/adjudicante/{start}/{end}/{adjudicante}")
 	public WebResult<BaseQueryResponse> getByAdjudicante(
 			@PathVariable("start") int start,
 			@PathVariable("end") int end,
@@ -48,7 +48,7 @@ public class BaseController {
 			});
 	}
 	
-	@RequestMapping("/contract/{start}/{end}/{adjudicatario}")
+	@RequestMapping("/contract/adjudicatario/{start}/{end}/{adjudicatario}")
 	public WebResult<BaseQueryResponse> getByAdjudicatario(
 			@PathVariable("start") int start,
 			@PathVariable("end") int end,
