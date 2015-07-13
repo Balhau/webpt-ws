@@ -47,4 +47,16 @@ public class BaseController {
 				return base.getByAdjudicante(start, end, adjudicante);
 			});
 	}
+	
+	@RequestMapping("/contract/{start}/{end}/{adjudicatario}")
+	public WebResult<BaseQueryResponse> getByAdjudicatario(
+			@PathVariable("start") int start,
+			@PathVariable("end") int end,
+			@PathVariable("adjudicatario") String adjudicatario
+			){
+		
+		return WebResult.<BaseQueryResponse>wrap(()->{
+			return base.getByAjudicatario(start, end, adjudicatario);
+		});
+	}
 }
