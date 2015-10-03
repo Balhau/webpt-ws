@@ -21,4 +21,15 @@ public class RestDescription {
 				()->{return sd.getControllers();}
 		);
 	}
+	
+	@RequestMapping("/info")
+	public WebResult<ServiceInfo> getService(){
+		return WebResult.<ServiceInfo>wrap(()->{
+			return new ServiceInfo(
+					"1.0 SNAPSHOT", 
+					"Balhau", 
+					"No fucking rights reserved", 
+					"This is a webservice that abstracts a bunch of scrappers...");
+		})
+	}
 }
