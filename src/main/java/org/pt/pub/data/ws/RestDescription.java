@@ -30,6 +30,6 @@ public class RestDescription {
 					"Balhau", 
 					"No fucking rights reserved", 
 					"This is a webservice that abstracts a bunch of scrappers...");
-		})
+		});
 	}
 }
