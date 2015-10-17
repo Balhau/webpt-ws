@@ -5,6 +5,9 @@ import facebook4j.FacebookFactory;
 import facebook4j.Like;
 import facebook4j.ResponseList;
 import facebook4j.auth.AccessToken;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.pt.pub.data.sources.amusing.chucknorris.ChuckNorris;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -18,6 +21,8 @@ import java.util.List;
 @Component
 public class FacebookChuckPoster {
 
+    private static String URL_TOKEN_UPDATER="https://graph.facebook.com/oauth/access_token?client_id=%s&client_secret=%s&grant_type=fb_exchange_token&fb_exchange_token=%s";
+
     @Value("${accessToken}")
     private String accessToken;
     @Value("${applicationId}")
@@ -28,7 +33,7 @@ public class FacebookChuckPoster {
     private String applicationPermissions;
     private Facebook facebook;
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 3600000)
     private void postFacebookChuckFact() throws Exception{
         Facebook facebook= new FacebookFactory().getInstance();
 
@@ -42,6 +47,16 @@ public class FacebookChuckPoster {
 
         System.out.println(chuckFact);
 
-        //facebook.postStatusMessage("Balhau Chuck Facts",)
+        facebook.postStatusMessage(chuckFact);
+        refreshTheAuthToken();
+    }
+
+    private void refreshTheAuthToken() throws Exception{
+        Connection connection= Jsoup.connect(String.format(URL_TOKEN_UPDATER,
+                applicationId,applicationSecret,accessToken
+                ));
+        Document doc=connection.get();
+        String out=doc.text();
+        accessToken=out.split("=")[1].split("&")[0];
     }
 }
