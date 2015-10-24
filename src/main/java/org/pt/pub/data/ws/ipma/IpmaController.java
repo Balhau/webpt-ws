@@ -9,6 +9,7 @@ import org.pt.pub.data.sources.ipma.domain.BeachEntry;
 import org.pt.pub.data.sources.ipma.domain.GeoWeather;
 import org.pt.pub.data.ws.domain.WebResult;
 import org.pt.pub.global.domain.TableData;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,16 +1,12 @@
 package org.pt.pub.data.ws.funny.chucknorris;
 
-import org.pt.pub.data.sources.accuweather.AccuWeather;
-import org.pt.pub.data.sources.accuweather.domain.Weather;
-import org.pt.pub.data.sources.accuweather.domain.WeatherLocationList;
-import org.pt.pub.data.sources.amusing.chucknorris.ChuckNorris;
+import org.pt.pub.data.sources.quotes.chucknorris.ChuckNorris;
 import org.pt.pub.data.ws.domain.WebResult;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Base64;
 import java.util.List;
 
 /**

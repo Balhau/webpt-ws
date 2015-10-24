@@ -2,15 +2,12 @@ package org.pt.pub.data.ws.tasks;
 
 import facebook4j.Facebook;
 import facebook4j.FacebookFactory;
-import facebook4j.Like;
-import facebook4j.ResponseList;
 import facebook4j.auth.AccessToken;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.pt.pub.data.sources.amusing.chucknorris.ChuckNorris;
+import org.pt.pub.data.sources.quotes.chucknorris.ChuckNorris;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

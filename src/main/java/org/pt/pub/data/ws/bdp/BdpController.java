@@ -6,6 +6,7 @@ import java.util.List;
 import org.pt.pub.data.sources.bdp.BancoPortugal;
 import org.pt.pub.data.ws.domain.WebResult;
 import org.pt.pub.global.domain.TableData;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,7 @@ public class BdpController {
 	}
 	
 	@RequestMapping("/categories")
+	@Cacheable("cache")
 	public WebResult<TableData> getBdpCategories(){
 		return WebResult.<TableData>wrap(
 				()-> bdp.getCategories()
@@ -30,6 +32,7 @@ public class BdpController {
 	}
 	
 	@RequestMapping("/category/{categorie}")
+	@Cacheable("cache")
 	public WebResult<TableData> getBdpSeries(@PathVariable("categorie") String categorie){
 		return WebResult.<TableData>wrap(
 				()-> bdp.getSeriesForCategorie(categorie)
@@ -37,6 +40,7 @@ public class BdpController {
 	}
 	
 	@RequestMapping("/category/serie/{id}")
+	@Cacheable("cache")
 	public WebResult<List<TableData>> getBdpSerieData(@PathVariable("id") String id){
 		return WebResult.<List<TableData>>wrap(
 				()->bdp.getDataForSeries(StringUtils.asList(id), new Date())
