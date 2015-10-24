@@ -5,6 +5,7 @@ import org.pt.pub.data.sources.accuweather.domain.Weather;
 import org.pt.pub.data.sources.accuweather.domain.WeatherLocationList;
 import org.pt.pub.data.sources.amusing.chucknorris.ChuckNorris;
 import org.pt.pub.data.ws.domain.WebResult;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ public class ChuckNorrisController {
     }
 
     @RequestMapping("/fact/{page}")
+    @Cacheable("cache")
     public WebResult<List<String>> getChuckFacts(@PathVariable("page") Integer page){
         return WebResult.<List<String>>wrap(
                 ()-> chuckNorris.getFacts(page)
@@ -32,6 +34,7 @@ public class ChuckNorrisController {
     }
 
     @RequestMapping("/fact/search/{keyword}/{page}")
+    @Cacheable("cache")
     public WebResult<List<String>> getChuckFactsByKeyword(
             @PathVariable("page") Integer page,
             @PathVariable("keyword") String patternSearch){

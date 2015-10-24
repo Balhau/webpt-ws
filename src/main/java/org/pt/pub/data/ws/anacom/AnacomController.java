@@ -9,6 +9,7 @@ import org.pt.pub.data.sources.anacom.domain.TarifaInternet;
 import org.pt.pub.data.sources.anacom.domain.TarifaMovel;
 import org.pt.pub.data.sources.anacom.domain.TarifaTelevisao;
 import org.pt.pub.data.ws.domain.WebResult;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,7 @@ public class AnacomController {
     }
 
     @RequestMapping("/tarifarios/internet")
+    @Cacheable("cache")
     public WebResult<List<TarifaInternet>> getInternetTarifarios(){
         return WebResult.<List<TarifaInternet>>wrap(
                 ()->anacom.getTarifariosInternet()
@@ -29,6 +31,7 @@ public class AnacomController {
     }
 
     @RequestMapping("/tarifarios/televisao")
+    @Cacheable("cache")
     public WebResult<List<TarifaTelevisao>> getTelevisaoTarifarios(){
         return WebResult.<List<TarifaTelevisao>>wrap(
                 () -> anacom.getTarifariosTelevisao()
@@ -36,6 +39,7 @@ public class AnacomController {
     }
 
     @RequestMapping("/tarifarios/movel")
+    @Cacheable("cache")
     public WebResult<List<TarifaMovel>> getMovelTarifarios(){
         return WebResult.<List<TarifaMovel>>wrap(
                 ()->anacom.getTarifariosMovel()
@@ -43,6 +47,7 @@ public class AnacomController {
     }
 
     @RequestMapping("/tarifarios/fixo")
+    @Cacheable("cache")
     public WebResult<List<TarifaFixo>> getFixoTarifarios(){
         return WebResult.<List<TarifaFixo>>wrap(
                 () -> anacom.getTarifariosFixo()

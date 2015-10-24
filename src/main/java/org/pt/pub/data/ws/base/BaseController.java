@@ -6,6 +6,7 @@ import org.pt.pub.data.sources.base.Base;
 import org.pt.pub.data.sources.base.domain.BaseQueryResponse;
 import org.pt.pub.data.ws.domain.WebResult;
 import org.pt.pub.global.domain.TableData;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,7 @@ public class BaseController {
 	}
 	
 	@RequestMapping("/contracts/{start}/{end}")
+	@Cacheable("cache")
 	public WebResult<BaseQueryResponse> getContracts(
 			@PathVariable("start") int startOffset,
 			@PathVariable("end") int endOffset
@@ -31,6 +33,7 @@ public class BaseController {
 	}
 	
 	@RequestMapping("/contract/{idContract}")
+	@Cacheable("cache")
 	public WebResult<List<TableData>> getIndicatorData(
 			@PathVariable("idContract") int idContract){
 		return WebResult.<List<TableData>>wrap(()->{
@@ -39,6 +42,7 @@ public class BaseController {
 	}
 	
 	@RequestMapping("/contract/adjudicante/{start}/{end}/{adjudicante}")
+	@Cacheable("cache")
 	public WebResult<BaseQueryResponse> getByAdjudicante(
 			@PathVariable("start") int start,
 			@PathVariable("end") int end,
@@ -49,6 +53,7 @@ public class BaseController {
 	}
 	
 	@RequestMapping("/contract/adjudicatario/{start}/{end}/{adjudicatario}")
+	@Cacheable("cache")
 	public WebResult<BaseQueryResponse> getByAdjudicatario(
 			@PathVariable("start") int start,
 			@PathVariable("end") int end,
