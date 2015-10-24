@@ -33,7 +33,7 @@ public class FacebookChuckPoster {
     private String applicationPermissions;
     private Facebook facebook;
 
-    @Scheduled(fixedRate = 3600000)
+    //@Scheduled(fixedRate = 3600000)
     private void postFacebookChuckFact() throws Exception{
         Facebook facebook= new FacebookFactory().getInstance();
 
