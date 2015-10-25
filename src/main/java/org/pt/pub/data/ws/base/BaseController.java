@@ -27,18 +27,14 @@ public class BaseController {
 			@PathVariable("start") int startOffset,
 			@PathVariable("end") int endOffset
 			){
-		return WebResult.<BaseQueryResponse>wrap(()->{
-			return base.getAllResults(startOffset, endOffset);
-		});
+		return WebResult.wrap(()->base.getAllResults(startOffset, endOffset));
 	}
 	
 	@RequestMapping("/contract/{idContract}")
 	@Cacheable("cache")
 	public WebResult<List<TableData>> getIndicatorData(
 			@PathVariable("idContract") int idContract){
-		return WebResult.<List<TableData>>wrap(()->{
-			return base.getEntryInformationByContractoId(idContract);
-		});
+		return WebResult.wrap(()-> base.getEntryInformationByContractoId(idContract));
 	}
 	
 	@RequestMapping("/contract/adjudicante/{start}/{end}/{adjudicante}")
@@ -47,9 +43,7 @@ public class BaseController {
 			@PathVariable("start") int start,
 			@PathVariable("end") int end,
 			@PathVariable("adjudicante") String adjudicante){
-			return WebResult.<BaseQueryResponse>wrap(()->{
-				return base.getByAdjudicante(start, end, adjudicante);
-			});
+			return WebResult.wrap(()-> base.getByAdjudicante(start, end, adjudicante));
 	}
 	
 	@RequestMapping("/contract/adjudicatario/{start}/{end}/{adjudicatario}")
@@ -60,8 +54,6 @@ public class BaseController {
 			@PathVariable("adjudicatario") String adjudicatario
 			){
 		
-		return WebResult.<BaseQueryResponse>wrap(()->{
-			return base.getByAjudicatario(start, end, adjudicatario);
-		});
+		return WebResult.wrap(()-> base.getByAjudicatario(start, end, adjudicatario));
 	}
 }

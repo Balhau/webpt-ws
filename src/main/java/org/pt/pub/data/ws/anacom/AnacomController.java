@@ -33,24 +33,18 @@ public class AnacomController {
     @RequestMapping("/tarifarios/televisao")
     @Cacheable("cache")
     public WebResult<List<TarifaTelevisao>> getTelevisaoTarifarios(){
-        return WebResult.<List<TarifaTelevisao>>wrap(
-                () -> anacom.getTarifariosTelevisao()
-        );
+        return WebResult.wrap(() -> anacom.getTarifariosTelevisao());
     }
 
     @RequestMapping("/tarifarios/movel")
     @Cacheable("cache")
     public WebResult<List<TarifaMovel>> getMovelTarifarios(){
-        return WebResult.<List<TarifaMovel>>wrap(
-                ()->anacom.getTarifariosMovel()
-        );
+        return WebResult.wrap(()->anacom.getTarifariosMovel());
     }
 
     @RequestMapping("/tarifarios/fixo")
     @Cacheable("cache")
     public WebResult<List<TarifaFixo>> getFixoTarifarios(){
-        return WebResult.<List<TarifaFixo>>wrap(
-                () -> anacom.getTarifariosFixo()
-        );
+        return WebResult.wrap(() -> anacom.getTarifariosFixo());
     }
 }

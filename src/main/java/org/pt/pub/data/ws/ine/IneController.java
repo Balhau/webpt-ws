@@ -29,7 +29,7 @@ public class IneController {
 	public WebResult<INEServices> getAvailableServices(
 			@PathVariable("pagenumber") int pageNumber,
 			@PathVariable("numperpage") int numperpage){
-		return WebResult.<INEServices>wrap(()-> ine.getAvailableServices(pageNumber, numperpage));
+		return WebResult.wrap(()-> ine.getAvailableServices(pageNumber, numperpage));
 	}
 	
 	@RequestMapping("/service/{b64url}")

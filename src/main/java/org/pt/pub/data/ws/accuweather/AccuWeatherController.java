@@ -21,15 +21,12 @@ public class AccuWeatherController {
 	
 	@RequestMapping("/locations/{location}")
 	public WebResult<WeatherLocationList> getLocations(@PathVariable("location") String location){
-		return WebResult.<WeatherLocationList>wrap(
-				()->accuweather.getLocations(location)
-		);
+		return WebResult.wrap(()->accuweather.getLocations(location));
 	}
 	
 	@RequestMapping("/location/{location}")
 	public WebResult<Weather> getLocationWeather(@PathVariable("location") String b64location){
-		return WebResult.<Weather>wrap(
-				()->{
+		return WebResult.wrap(()->{
 					String location=new String(Base64.getDecoder().decode(b64location.getBytes()));
 					return accuweather.getLocation(location);
 				}

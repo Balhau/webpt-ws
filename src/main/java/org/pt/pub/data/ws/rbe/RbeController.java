@@ -22,18 +22,14 @@ public class RbeController {
 	
 	@RequestMapping("/indicators")
 	public WebResult<List<RbeIndicator>> getIndicators(){
-		return WebResult.<List<RbeIndicator>>wrap(()->{
-			return rbe.getIndicators();
-		});
+		return WebResult.wrap(()->rbe.getIndicators());
 	}
 	
 	@RequestMapping("/indicator/{cat}/{serie}")
 	public WebResult<RbeIndicatorData> getIndicatorData(
 			@PathVariable("cat") int cat,
 			@PathVariable("serie") int serie){
-		return WebResult.<RbeIndicatorData>wrap(()->{
-			return rbe.getIndicator(cat, serie);
-		});
+		return WebResult.<RbeIndicatorData>wrap(()->rbe.getIndicator(cat, serie));
 	}
 	
 }

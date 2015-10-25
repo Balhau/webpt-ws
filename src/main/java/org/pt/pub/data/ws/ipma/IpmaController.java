@@ -32,25 +32,20 @@ public class IpmaController {
 	
 	@RequestMapping("/forecast/{day}")
 	public WebResult<List<GeoWeather<?>>> forecastDay(@PathVariable("day") int day){
-		return WebResult.<List<GeoWeather<?>>>wrapWithException(()->{
-			return ipma.getForecastDay(day);
-		},new Exception("Invalid request. Maybe because day request is not available. "
+		return WebResult.wrapWithException(()->{return ipma.getForecastDay(day);},
+				new Exception("Invalid request. Maybe because day request is not available. "
 				+ "Offset day should be between [0,2]"));
 	}
 	
 	@RequestMapping("/forecast/beachlist")
 	public WebResult<List<BeachEntry>> getBeachList(){
-		return WebResult.<List<BeachEntry>>wrap(()->{
-			return ipma.getBeachEntries();
-		});
+		return WebResult.wrap(()->ipma.getBeachEntries());
 	}
 	
 	@RequestMapping("/forecast/beachinfo/{idbeach}")
 	public WebResult<List<TableData>> getBeachInfo(
 			@PathVariable("idbeach") int idbeach){
-		return WebResult.<List<TableData>>wrap(()->{
-			return ipma.getBeachInfo(idbeach);
-		});
+		return WebResult.wrap(()->ipma.getBeachInfo(idbeach));
 	}
 	
 	@RequestMapping("/forecast/seismic/{fromdate}")
@@ -59,7 +54,7 @@ public class IpmaController {
 			@DateTimeFormat(iso=ISO.DATE)
 			Date fromDate
 	){
-		return WebResult.<List<TableData>>wrap(()->{
+		return WebResult.wrap(()->{
 			Calendar c=Calendar.getInstance();
 			c.setTime(fromDate);
 			return ipma.getSeismicActivity(fromDate);
