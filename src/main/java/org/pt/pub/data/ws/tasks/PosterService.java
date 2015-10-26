@@ -35,6 +35,7 @@ public class PosterService {
     private String applicationPermissions;
     private Facebook facebook;
 
+    //Twitter auth
     @Value("${twitter.consumerKey}")
     private String consumerKey;
     @Value("${twitter.consumerSecret}")
