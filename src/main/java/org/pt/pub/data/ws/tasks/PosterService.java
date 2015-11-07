@@ -8,13 +8,18 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.pt.pub.data.sources.domain.Message;
 import org.pt.pub.data.sources.domain.MessageService;
+import org.pt.pub.data.sources.events.HistoricalEvents;
 import org.pt.pub.data.sources.quotes.brainyquote.BrainyMessage;
 import org.pt.pub.data.sources.quotes.chucknorris.ChuckNorris;
+import org.pt.pub.data.utilities.Utils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by vitorfernandes on 10/17/15.
@@ -47,16 +52,21 @@ public class PosterService {
 
     //Twitter auth
 
-    private static MessageService[] services=new MessageService[]{
-            new ChuckNorris(),new BrainyMessage()
-    };
 
     @Scheduled(fixedRate = 3600000)
     private void postFacebookChuckFact() throws Exception{
         Facebook facebook=buildFacebook();
         Twitter twitter=buildTwitter();
 
-        MessageService service = Math.random() > 0.5 ? new ChuckNorris() : new BrainyMessage();
+
+
+        List<MessageService> services = new ArrayList<>();
+        //Add the events available
+        services.add(new ChuckNorris());
+        services.add(new BrainyMessage());
+        services.add(new HistoricalEvents());
+
+        MessageService service = Utils.pickRandom(services);
         Message message =service.getMessage();
         System.out.println(message);
 
