@@ -6,9 +6,9 @@ import facebook4j.auth.AccessToken;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.pt.pub.data.sources.domain.Quote;
-import org.pt.pub.data.sources.domain.QuoteService;
-import org.pt.pub.data.sources.quotes.brainyquote.BrainyQuote;
+import org.pt.pub.data.sources.domain.Message;
+import org.pt.pub.data.sources.domain.MessageService;
+import org.pt.pub.data.sources.quotes.brainyquote.BrainyMessage;
 import org.pt.pub.data.sources.quotes.chucknorris.ChuckNorris;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -47,8 +47,8 @@ public class PosterService {
 
     //Twitter auth
 
-    private static QuoteService[] services=new QuoteService[]{
-            new ChuckNorris(),new BrainyQuote()
+    private static MessageService[] services=new MessageService[]{
+            new ChuckNorris(),new BrainyMessage()
     };
 
     @Scheduled(fixedRate = 3600000)
@@ -56,11 +56,11 @@ public class PosterService {
         Facebook facebook=buildFacebook();
         Twitter twitter=buildTwitter();
 
-        QuoteService service = Math.random() > 0.5 ? new ChuckNorris() : new BrainyQuote();
-        Quote quote=service.getQuote();
-        System.out.println(quote);
+        MessageService service = Math.random() > 0.5 ? new ChuckNorris() : new BrainyMessage();
+        Message message =service.getMessage();
+        System.out.println(message);
 
-        String update=quote.getQuote()+"\n\n"+quote.getAuthor();
+        String update= message.getMessage()+"\n\n"+ message.getSource();
 
         facebook.postStatusMessage(update);
         twitter.updateStatus(update);

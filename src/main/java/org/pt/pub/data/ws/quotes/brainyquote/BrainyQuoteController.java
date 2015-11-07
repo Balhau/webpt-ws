@@ -1,7 +1,7 @@
 package org.pt.pub.data.ws.quotes.brainyquote;
 
-import org.pt.pub.data.sources.quotes.brainyquote.BrainyQuote;
-import org.pt.pub.data.sources.domain.Quote;
+import org.pt.pub.data.sources.domain.Message;
+import org.pt.pub.data.sources.quotes.brainyquote.BrainyMessage;
 import org.pt.pub.data.sources.quotes.brainyquote.domain.Topic;
 import org.pt.pub.data.ws.domain.WebResult;
 import org.springframework.cache.annotation.Cacheable;
@@ -17,10 +17,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/ws/quotes/brainyquote")
 public class BrainyQuoteController {
-    private BrainyQuote brainyQuote;
+    private BrainyMessage brainyQuote;
 
     public BrainyQuoteController(){
-        this.brainyQuote=new BrainyQuote();
+        this.brainyQuote=new BrainyMessage();
     }
 
     @RequestMapping("/topics")
@@ -33,7 +33,7 @@ public class BrainyQuoteController {
 
     @RequestMapping("/quote/{topic}/{page}")
     @Cacheable("cache")
-    public WebResult<List<Quote>> getQuotes(
+    public WebResult<List<Message>> getQuotes(
             @PathVariable("topic") String topic,
             @PathVariable("page") int page
     ){

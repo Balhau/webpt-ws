@@ -1,6 +1,6 @@
 package org.pt.pub.data.ws.quotes.chuck;
 
-import org.pt.pub.data.sources.domain.Quote;
+import org.pt.pub.data.sources.domain.Message;
 import org.pt.pub.data.sources.quotes.chucknorris.ChuckNorris;
 import org.pt.pub.data.ws.domain.WebResult;
 import org.springframework.cache.annotation.Cacheable;
@@ -24,7 +24,7 @@ public class ChuckNorrisController {
 
     @RequestMapping("/fact/{page}")
     @Cacheable("cache")
-    public WebResult<List<Quote>> getChuckFacts(@PathVariable("page") Integer page){
+    public WebResult<List<Message>> getChuckFacts(@PathVariable("page") Integer page){
         return WebResult.wrap(
                 ()-> chuckNorris.getFacts(page)
         );
@@ -32,7 +32,7 @@ public class ChuckNorrisController {
 
     @RequestMapping("/fact/search/{keyword}/{page}")
     @Cacheable("cache")
-    public WebResult<List<Quote>> getChuckFactsByKeyword(
+    public WebResult<List<Message>> getChuckFactsByKeyword(
             @PathVariable("page") Integer page,
             @PathVariable("keyword") String patternSearch){
         return WebResult.wrap(
