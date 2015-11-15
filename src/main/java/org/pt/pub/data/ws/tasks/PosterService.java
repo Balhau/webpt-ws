@@ -6,6 +6,7 @@ import facebook4j.auth.AccessToken;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.pt.pub.data.sources.base.Base;
 import org.pt.pub.data.sources.domain.Message;
 import org.pt.pub.data.sources.domain.MessageService;
 import org.pt.pub.data.sources.events.HistoricalEvents;
@@ -38,7 +39,6 @@ public class PosterService {
     private String applicationSecret;
     @Value("${facebook.applicationPermissions}")
     private String applicationPermissions;
-    private Facebook facebook;
 
     //Twitter auth
     @Value("${twitter.consumerKey}")
@@ -50,21 +50,25 @@ public class PosterService {
     @Value("${twitter.accessTokenSecret}")
     private String accessTokenSecret;
 
-    //Twitter auth
+    private Facebook facebook;
+    private Twitter twitter;
 
+    //Twitter auth
 
     @Scheduled(fixedRate = 3600000)
     private void postFacebookChuckFact() throws Exception{
-        Facebook facebook=buildFacebook();
-        Twitter twitter=buildTwitter();
 
-
+        if(facebook == null || twitter== null){
+            facebook=buildFacebook();
+            twitter=buildTwitter();
+        }
 
         List<MessageService> services = new ArrayList<>();
         //Add the events available
         services.add(new ChuckNorris());
         services.add(new BrainyMessage());
         services.add(new HistoricalEvents());
+        services.add(new Base());
 
         MessageService service = Utils.pickRandom(services);
         Message message =service.getMessage();
