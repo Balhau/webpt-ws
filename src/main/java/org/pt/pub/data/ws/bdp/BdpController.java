@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.pt.pub.data.sources.bdp.BancoPortugal;
 import org.pt.pub.data.ws.domain.WebResult;
-import org.pt.pub.global.domain.TableData;
+import org.pub.global.domain.TableData;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
