@@ -1,4 +1,6 @@
 /target/
+.gradle/
 .settings
 .project
 .classpath
+*.iml

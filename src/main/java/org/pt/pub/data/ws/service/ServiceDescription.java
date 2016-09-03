@@ -75,8 +75,7 @@ public class ServiceDescription {
 		List<String> nparams=new ArrayList<String>();
 		int i=0;
 		for(Parameter param : params){
-			String desc=an!=null?((PathVariable)an[i][0]).value():"";
-			nparams.add(param.getName()+","+param.getType().getName()+", "+desc);
+			nparams.add(param.getName()+","+param.getType().getName());
 			i++;
 		}
 		return nparams;
