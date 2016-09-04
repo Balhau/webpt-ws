@@ -1,5 +1,6 @@
 package org.pub.pt.data.ws;
 
+import org.pub.pt.data.ws.service.ServiceDescription;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
@@ -15,8 +16,8 @@ public class Application {
 
     public static void main(String[] args) throws Exception{
         SpringApplication.run(Application.class, args);
-    	//ServiceDescription sd=new ServiceDescription();
-    	//sd.getControllers();
+    	ServiceDescription sd=new ServiceDescription();
+    	sd.getControllers();
     }
 
     @Bean
