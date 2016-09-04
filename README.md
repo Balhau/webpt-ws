@@ -665,3 +665,8 @@ the answer for this request is something like this
     "error": false,
     "statusMessage": "OK"
     }
+
+
+## Postman Requests
+
+In this [link](https://www.getpostman.com/collections/ea5deb3fe60d5c7bea5c) you can import the Postman requests to try yourself against a running server
