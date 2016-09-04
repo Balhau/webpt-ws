@@ -22,7 +22,7 @@ public class BaseController {
 	}
 	
 	@RequestMapping("/contracts/{start}/{end}")
-	@Cacheable("cache")
+	@Cacheable
 	public WebResult<BaseQueryResponse> getContracts(
 			@PathVariable("start") int startOffset,
 			@PathVariable("end") int endOffset
@@ -31,14 +31,14 @@ public class BaseController {
 	}
 	
 	@RequestMapping("/contract/{idContract}")
-	@Cacheable("cache")
+	@Cacheable
 	public WebResult<List<TableData>> getIndicatorData(
 			@PathVariable("idContract") int idContract){
 		return WebResult.wrap(()-> base.getEntryInformationByContractoId(idContract));
 	}
 	
 	@RequestMapping("/contract/adjudicante/{start}/{end}/{adjudicante}")
-	@Cacheable("cache")
+	@Cacheable
 	public WebResult<BaseQueryResponse> getByAdjudicante(
 			@PathVariable("start") int start,
 			@PathVariable("end") int end,
@@ -47,7 +47,7 @@ public class BaseController {
 	}
 	
 	@RequestMapping("/contract/adjudicatario/{start}/{end}/{adjudicatario}")
-	@Cacheable("cache")
+	@Cacheable
 	public WebResult<BaseQueryResponse> getByAdjudicatario(
 			@PathVariable("start") int start,
 			@PathVariable("end") int end,

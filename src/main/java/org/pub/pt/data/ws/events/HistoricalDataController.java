@@ -30,7 +30,7 @@ public class HistoricalDataController {
     }
 
     @RequestMapping("/event/{month}/{day}")
-    @Cacheable("cache")
+    @Cacheable
     public WebResult<List<HistoricalEvent>> getEventsByMonthDay(
         @PathVariable("month") int month,
         @PathVariable("day") int day){
@@ -41,7 +41,7 @@ public class HistoricalDataController {
     }
 
     @RequestMapping("/births/{month}/{day}")
-    @Cacheable("cache")
+    @Cacheable
     public WebResult<List<HistoricalEvent>> getBirthsByMonthDay(
             @PathVariable("month") int month,
             @PathVariable("day") int day){
@@ -52,7 +52,7 @@ public class HistoricalDataController {
     }
 
     @RequestMapping("/deaths/{month}/{day}")
-    @Cacheable("cache")
+    @Cacheable
     public WebResult<List<HistoricalEvent>> getDeathsByMonthDay(
             @PathVariable("month") int month,
             @PathVariable("day") int day){

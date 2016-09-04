@@ -24,19 +24,19 @@ public class BdpController {
 	}
 	
 	@RequestMapping("/categories")
-	@Cacheable("cache")
+	@Cacheable
 	public WebResult<TableData> getBdpCategories(){
 		return WebResult.wrap(()-> bdp.getCategories());
 	}
 	
 	@RequestMapping("/category/{categorie}")
-	@Cacheable("cache")
+	@Cacheable
 	public WebResult<TableData> getBdpSeries(@PathVariable("categorie") String categorie){
 		return WebResult.wrap(()-> bdp.getSeriesForCategorie(categorie));
 	}
 	
 	@RequestMapping("/category/serie/{id}")
-	@Cacheable("cache")
+	@Cacheable
 	public WebResult<List<TableData>> getBdpSerieData(@PathVariable("id") String id){
 		return WebResult.wrap(()->bdp.getDataForSeries(StringUtils.asList(id), new Date()));
 	}

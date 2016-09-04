@@ -24,7 +24,7 @@ public class BrainyQuoteController {
     }
 
     @RequestMapping("/topics")
-    @Cacheable("cache")
+    @Cacheable
     public WebResult<List<Topic>> getTopics(){
         return WebResult.wrap(
                 () -> brainyQuote.getTopics()
@@ -32,7 +32,7 @@ public class BrainyQuoteController {
     }
 
     @RequestMapping("/quote/{topic}/{page}")
-    @Cacheable("cache")
+    @Cacheable
     public WebResult<List<Message>> getQuotes(
             @PathVariable("topic") String topic,
             @PathVariable("page") int page

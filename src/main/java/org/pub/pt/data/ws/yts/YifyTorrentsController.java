@@ -26,7 +26,7 @@ public class YifyTorrentsController {
     }
 
     @RequestMapping(value = "/torrents/{page}", method = RequestMethod.GET)
-    @Cacheable("cache")
+    @Cacheable
     public WebResult<List<YifyTorrent>> getTorrentsPage(@PathVariable int page){
         return WebResult.wrap(
                 () -> yts.getTorrentsFromPage(page)
@@ -34,7 +34,7 @@ public class YifyTorrentsController {
     }
 
     @RequestMapping(value = "/links/{page}",method = RequestMethod.GET)
-    @Cacheable("cache")
+    @Cacheable
     public WebResult<List<TorrentLink>> getLinksPage(@PathVariable int page){
         return WebResult.wrap(() -> yts.getTorrentURLs(page));
     }
