@@ -23,7 +23,7 @@ public class ChuckNorrisController {
     }
 
     @RequestMapping("/fact/{page}")
-    @Cacheable
+    @Cacheable(value = "cache",keyGenerator = "keyGenerator")
     public WebResult<List<Message>> getChuckFacts(@PathVariable("page") Integer page){
         return WebResult.wrap(
                 ()-> chuckNorris.getFacts(page)
@@ -31,7 +31,7 @@ public class ChuckNorrisController {
     }
 
     @RequestMapping("/fact/search/{keyword}/{page}")
-    @Cacheable
+    @Cacheable(value = "cache",keyGenerator = "keyGenerator")
     public WebResult<List<Message>> getChuckFactsByKeyword(
             @PathVariable("page") Integer page,
             @PathVariable("keyword") String patternSearch){

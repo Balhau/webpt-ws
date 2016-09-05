@@ -26,7 +26,7 @@ public class PiratebayController {
     }
 
     @RequestMapping(value = "/torrents", method = RequestMethod.PUT, consumes = "application/json")
-    @Cacheable
+    @Cacheable(value = "cache",keyGenerator = "keyGenerator")
     public WebResult<List<TorrentInfo>> searchTorrents(@RequestBody PirateBayRequest query){
         return WebResult.wrap(
                 () -> pirateBay.searchTorrents(query.getQuery(),query.getPage(),query.getOrder())

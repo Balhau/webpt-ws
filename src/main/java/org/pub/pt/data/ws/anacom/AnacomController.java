@@ -23,7 +23,7 @@ public class AnacomController {
     }
 
     @RequestMapping("/tarifarios/internet")
-    @Cacheable
+    @Cacheable(value = "cache",keyGenerator = "keyGenerator")
     public WebResult<List<TarifaInternet>> getInternetTarifarios(){
         return WebResult.<List<TarifaInternet>>wrap(
                 ()->anacom.getTarifariosInternet()
@@ -31,19 +31,19 @@ public class AnacomController {
     }
 
     @RequestMapping("/tarifarios/televisao")
-    @Cacheable
+    @Cacheable(value = "cache",keyGenerator = "keyGenerator")
     public WebResult<List<TarifaTelevisao>> getTelevisaoTarifarios(){
         return WebResult.wrap(() -> anacom.getTarifariosTelevisao());
     }
 
     @RequestMapping("/tarifarios/movel")
-    @Cacheable
+    @Cacheable(value = "cache",keyGenerator = "keyGenerator")
     public WebResult<List<TarifaMovel>> getMovelTarifarios(){
         return WebResult.wrap(()->anacom.getTarifariosMovel());
     }
 
     @RequestMapping("/tarifarios/fixo")
-    @Cacheable
+    @Cacheable(value = "cache",keyGenerator = "keyGenerator")
     public WebResult<List<TarifaFixo>> getFixoTarifarios(){
         return WebResult.wrap(() -> anacom.getTarifariosFixo());
     }
