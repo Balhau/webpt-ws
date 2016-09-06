@@ -29,11 +29,12 @@ public class Application {
 
     @Bean
     public CacheManager cacheManager() {
-        CacheBuilder cacheBuilder = CacheBuilder.newBuilder()
+        /*CacheBuilder cacheBuilder = CacheBuilder.newBuilder()
                 .maximumSize(cacheSize)
                 .expireAfterAccess(expirationInHours, TimeUnit.HOURS);
+                */
         GuavaCacheManager cacheManager = new GuavaCacheManager("cache");
-        cacheManager.setCacheBuilder(cacheBuilder);
+        //cacheManager.setCacheBuilder(cacheBuilder);
         return cacheManager;
     }
 
