@@ -1,20 +1,25 @@
 package org.pub.pt.data.ws;
 
+import com.google.common.cache.CacheBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.guava.GuavaCacheManager;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.lang.reflect.Method;
+import java.util.concurrent.TimeUnit;
 
 @EnableScheduling
 @SpringBootApplication
 @EnableCaching
 public class Application {
+
+    private static final int cacheSize = 10000;
+    private static final int expirationInHours = 6;
 
     public static void main(String[] args) throws Exception{
         SpringApplication.run(Application.class, args);
@@ -24,8 +29,14 @@ public class Application {
 
     @Bean
     public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("cache");
+        CacheBuilder cacheBuilder = CacheBuilder.newBuilder()
+                .maximumSize(cacheSize)
+                .expireAfterAccess(expirationInHours, TimeUnit.HOURS);
+        GuavaCacheManager cacheManager = new GuavaCacheManager("cache");
+        cacheManager.setCacheBuilder(cacheBuilder);
+        return cacheManager;
     }
+
 
 
     @Bean
