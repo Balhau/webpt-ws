@@ -1,9 +1,7 @@
 package org.pub.pt.data.ws;
 
-import org.pub.pt.data.ws.service.ServiceDescription;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
@@ -28,6 +26,7 @@ public class Application {
     public CacheManager cacheManager() {
         return new ConcurrentMapCacheManager("cache");
     }
+
 
     @Bean
     public KeyGenerator keyGenerator(){

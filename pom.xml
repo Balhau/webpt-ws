@@ -26,31 +26,61 @@
         </snapshotRepository>
     </distributionManagement>
 
+    <properties>
+        <guava.version>19.0</guava.version>
+        <webpt.data>1.0-SNAPSHOT</webpt.data>
+        <facebook4j.core>[2.3,)</facebook4j.core>
+        <twitter4j.core>[4.0,)</twitter4j.core>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.pt.pub.data</groupId>
+                <artifactId>webPtData</artifactId>
+                <version>${webpt.data}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.facebook4j</groupId>
+                <artifactId>facebook4j-core</artifactId>
+                <version>${facebook4j.core}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.twitter4j</groupId>
+                <artifactId>twitter4j-core</artifactId>
+                <version>${twitter4j.core}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
         	<groupId>org.pt.pub.data</groupId>
   			<artifactId>webPtData</artifactId>
-  			<version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.facebook4j</groupId>
             <artifactId>facebook4j-core</artifactId>
-            <version>[2.3,)</version>
         </dependency>
         <dependency>
             <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-core</artifactId>
-            <version>[4.0,)</version>
         </dependency>
     </dependencies>
-
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
 
 
     <build>
