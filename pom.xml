@@ -33,6 +33,7 @@
         <twitter4j.core>[4.0,)</twitter4j.core>
         <java.version>1.8</java.version>
         <spring.context.support>4.2.3.RELEASE</spring.context.support>
+        <spring.context>4.2.6.RELEASE</spring.context>
     </properties>
 
     <dependencyManagement>
@@ -57,26 +58,25 @@
                 <artifactId>twitter4j-core</artifactId>
                 <version>${twitter4j.core}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context-support</artifactId>
-                <version>${spring.context.support}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>

@@ -18,8 +18,8 @@ import java.util.concurrent.TimeUnit;
 @EnableCaching
 public class Application {
 
-    private static final int cacheSize = 10000;
-    private static final int expirationInHours = 6;
+    public static final int GUAVA_CACHE_SIZE = 10000;
+    public static final int GUAVA_EXPIRATION_HOURS = 6;
 
     public static void main(String[] args) throws Exception{
         SpringApplication.run(Application.class, args);
@@ -29,12 +29,11 @@ public class Application {
 
     @Bean
     public CacheManager cacheManager() {
-        /*CacheBuilder cacheBuilder = CacheBuilder.newBuilder()
-                .maximumSize(cacheSize)
-                .expireAfterAccess(expirationInHours, TimeUnit.HOURS);
-                */
+        CacheBuilder cacheBuilder = CacheBuilder.newBuilder()
+                .maximumSize(Application.GUAVA_CACHE_SIZE)
+                .expireAfterAccess(Application.GUAVA_EXPIRATION_HOURS, TimeUnit.HOURS);
         GuavaCacheManager cacheManager = new GuavaCacheManager("cache");
-        //cacheManager.setCacheBuilder(cacheBuilder);
+        cacheManager.setCacheBuilder(cacheBuilder);
         return cacheManager;
     }
 
