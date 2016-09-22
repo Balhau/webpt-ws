@@ -55,7 +55,7 @@ public class PosterService {
 
     //Twitter auth
 
-    @Scheduled(fixedRate = 3600000)
+    //@Scheduled(fixedRate = 3600000)
     private void postFacebookChuckFact() throws Exception{
 
         if(facebook == null || twitter== null){
