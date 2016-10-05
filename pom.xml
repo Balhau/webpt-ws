@@ -13,18 +13,6 @@
         <version>1.2.4.RELEASE</version>
     </parent>
 
-    <repositories>
-      <repository>
-          <id>releases</id>
-          <name>balhau nexus</name>
-          <url>http://nexus.balhau.net/nexus/content/repositories/releases</url>
-      </repository>
-      <repository>
-        <id>snapshots</id>
-        <url>http://nexus.balhau.net/nexus/content/repositories/snapshots</url>
-      </repository>
-  </repositories>
-  
     <properties>
         <guava.version>19.0</guava.version>
         <webpt.data>1.0-SNAPSHOT</webpt.data>
@@ -111,6 +99,15 @@
             <id>spring-releases</id>
             <url>https://repo.spring.io/libs-release</url>
         </repository>
+    <repository>
+      <id>releases</id>
+      <name>balhau nexus</name>
+      <url>http://nexus.balhau.net/nexus/content/repositories/releases</url>
+    </repository>
+    <repository>
+      <id>snapshots</id>
+      <url>http://nexus.balhau.net/nexus/content/repositories/snapshots</url>
+    </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
