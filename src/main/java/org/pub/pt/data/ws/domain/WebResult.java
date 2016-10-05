@@ -1,6 +1,9 @@
 package org.pub.pt.data.ws.domain;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * This object represents a general response from the controllers. This is usefull to encapsulate the messaging
  * and error handling on the controller responses
@@ -9,6 +12,8 @@ package org.pub.pt.data.ws.domain;
  * @param <T>
  */
 public class WebResult<T> {
+
+	private final static Logger LOGGER = LoggerFactory.getLogger(WebResult.class);
 	
 	public static final String OK="OK";
 	public static final String ERROR="ERROR";
@@ -61,6 +66,7 @@ public class WebResult<T> {
 			T res=wrapper.wrap();
 			return WebResult.<T>ok(res);
 		}catch(Exception ex){
+			LOGGER.error(ex.getLocalizedMessage());
 			return WebResult.<T>fail(ex.getMessage());
 		}
 	}
@@ -70,6 +76,7 @@ public class WebResult<T> {
 			T res=wrapper.wrap();
 			return WebResult.<T>ok(res);
 		}catch(Exception exp){
+			LOGGER.error(ex.getMessage());
 			return WebResult.<T>fail(ex.getMessage());
 		}
 	}

@@ -1,11 +1,11 @@
 package org.pub.pt.data.ws.yts;
 
-import org.pub.data.sources.piratebay.domain.TorrentInfo;
 import org.pub.data.sources.yts.YifyTorrents;
 import org.pub.data.sources.yts.domain.TorrentLink;
 import org.pub.data.sources.yts.domain.YifyTorrent;
 import org.pub.pt.data.ws.domain.WebResult;
-import org.pub.pt.data.ws.piratebay.domain.PirateBayRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
