@@ -13,19 +13,18 @@
         <version>1.2.4.RELEASE</version>
     </parent>
 
-    <distributionManagement>
-      <!-- use the following if you're not using a snapshot version. -->
+    <repositories>
       <repository>
-        <id>releases</id>
-        <url>http://nexus.balhau.net/nexus/content/repositories/releases</url>
+          <id>releases</id>
+          <name>balhau nexus</name>
+          <url>http://nexus.balhau.net/nexus/content/repositories/releases</url>
       </repository>
-<!-- use the following if you ARE using a snapshot version. -->
-      <snapshotRepository>
+      <repository>
         <id>snapshots</id>
         <url>http://nexus.balhau.net/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
+      </repository>
+  </repositories>
+  
     <properties>
         <guava.version>19.0</guava.version>
         <webpt.data>1.0-SNAPSHOT</webpt.data>
