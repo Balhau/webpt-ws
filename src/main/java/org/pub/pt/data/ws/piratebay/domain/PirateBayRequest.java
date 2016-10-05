@@ -14,6 +14,10 @@ public class PirateBayRequest {
         this.page=page;
     }
 
+    public String toString(){
+        return String.format("[order=%s,query=%s,page=%s]",order,query,page);
+    }
+
     public PirateBayRequest(){
 
     }
