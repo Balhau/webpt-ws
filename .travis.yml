@@ -4,5 +4,5 @@ jdk:
 script: mvn clean install
 
 before_install:
- - git clone https://github.com/Balhau/WebPtData.git
- - cd WebPtData && mvn install -DskipTests
+ - cd /tmp && git clone https://github.com/Balhau/WebPtData.git
+ - cd /tmp && cd WebPtData && mvn install -DskipTests
