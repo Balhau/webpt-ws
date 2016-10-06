@@ -1,8 +1,4 @@
 language: java
 jdk:
   - oraclejdk8
-script: mvn clean install
-
-before_install:
- - cd /tmp && git clone https://github.com/Balhau/WebPtData.git
- - cd /tmp && cd WebPtData && mvn install -DskipTests
+script: mvn clean install -DskipTests
