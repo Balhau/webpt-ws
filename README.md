@@ -1,3 +1,4 @@
+![build status](https://travis-ci.org/Balhau/webpt-ws.svg?branch=master)
 #Introduction
 
 This is a web-service that lets you search for public data of portuguese (but not only) institutions. This is essentialy a front end
