@@ -5,4 +5,4 @@ script: mvn clean install
 
 before_install:
  - git clone https://github.com/Balhau/WebPtData.git
- - cd WebPtData && mvn install
+ - cd WebPtData && mvn install -DskipTests
