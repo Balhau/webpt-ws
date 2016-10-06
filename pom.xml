@@ -25,29 +25,16 @@
 
     <repositories>
         <repository>
+          <id>releases</id>
+          <url>http://nexus.balhau.net/nexus/content/repositories/releases</url>
+        </repository>
+        <repository>
+          <id>snapshots</id>
+          <url>http://nexus.balhau.net/nexus/content/repositories/snapshots</url>
+        </repository>
+        <repository>
             <id>spring-releases</id>
             <url>https://repo.spring.io/libs-release</url>
-        </repository>
-        <repository>
-          <id>balhau-releases</id>
-          <name>balhau nexus</name>
-          <url>http://nexus.balhau.net/nexus/content/repositories/releases</url>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-              <enabled>false</enabled>
-          </snapshots>
-        </repository>
-        <repository>
-          <id>balhau-snapshots</id>
-          <url>http://nexus.balhau.net/nexus/content/repositories/snapshots</url>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-              <enabled>false</enabled>
-          </snapshots>
         </repository>
     </repositories>
 
