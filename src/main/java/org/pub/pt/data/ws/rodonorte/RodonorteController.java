@@ -5,10 +5,8 @@ import org.pub.pt.data.sources.rodonorte.domain.Destination;
 import org.pub.pt.data.sources.rodonorte.domain.Ride;
 import org.pub.pt.data.ws.domain.WebResult;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

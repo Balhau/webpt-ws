@@ -5,6 +5,7 @@ import java.util.List;
 import org.pub.pt.data.ws.domain.WebResult;
 import org.pub.pt.data.ws.service.ServiceDescription;
 import org.pub.pt.data.ws.service.ServiceDescriptionDomain;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ public class RestDescription {
 	public RestDescription(){
 		sd=new ServiceDescription();
 	}
-	
+
 	@RequestMapping("/")
 	public WebResult<List<ServiceDescriptionDomain>> describeServices(){
 		return WebResult.<List<ServiceDescriptionDomain>>wrap(
