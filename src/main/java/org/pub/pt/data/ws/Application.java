@@ -1,6 +1,7 @@
 package org.pub.pt.data.ws;
 
 import com.google.common.cache.CacheBuilder;
+import org.pub.pt.data.ws.service.ServiceDescription;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
