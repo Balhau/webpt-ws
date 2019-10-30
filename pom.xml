@@ -25,63 +25,61 @@
 
     <repositories>
         <repository>
-          <id>releases</id>
-          <url>http://nexus.balhau.net/nexus/content/repositories/releases</url>
+            <id>releases</id>
+            <name>balhau-releases</name>
+            <url>http://shared.balhau.net/repo/releases</url>
         </repository>
         <repository>
-          <id>snapshots</id>
-          <url>http://nexus.balhau.net/nexus/content/repositories/snapshots</url>
-        </repository>
-        <repository>
-            <id>spring-releases</id>
-            <url>https://repo.spring.io/libs-release</url>
+            <id>snapshots</id>
+            <name>balhau-snapshots</name>
+            <url>http://shared.balhau.net/repo/snapshots/</url>
         </repository>
     </repositories>
 
+
     <distributionManagement>
-      <!-- use the following if you're not using a snapshot version. -->
-      <repository>
-        <id>releases</id>
-        <url>http://nexus.balhau.net/nexus/content/repositories/releases</url>
-      </repository>
-<!-- use the following if you ARE using a snapshot version. -->
-      <snapshotRepository>
-        <id>snapshots</id>
-        <url>http://nexus.balhau.net/nexus/content/repositories/snapshots</url>
+        <repository>
+            <id>releases</id>
+            <url>file:///media/wd5t/shared/repo/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>file:///media/wd5t/shared/repo/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-releases</id>
-            <url>https://repo.spring.io/libs-release</url>
-        </pluginRepository>
-    </pluginRepositories>
+<pluginRepositories>
+       <pluginRepository>
+           <id>spring-releases</id>
+           <url>https://repo.spring.io/libs-release</url>
+       </pluginRepository>
+   </pluginRepositories>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.pt.pub.data</groupId>
-                <artifactId>webPtData</artifactId>
-                <version>${webpt.data}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.facebook4j</groupId>
-                <artifactId>facebook4j-core</artifactId>
-                <version>${facebook4j.core}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.twitter4j</groupId>
-                <artifactId>twitter4j-core</artifactId>
-                <version>${twitter4j.core}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+   <dependencyManagement>
+       <dependencies>
+           <dependency>
+               <groupId>com.google.guava</groupId>
+               <artifactId>guava</artifactId>
+               <version>${guava.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.pt.pub.data</groupId>
+               <artifactId>webPtData</artifactId>
+               <version>${webpt.data}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.facebook4j</groupId>
+               <artifactId>facebook4j-core</artifactId>
+               <version>${facebook4j.core}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.twitter4j</groupId>
+               <artifactId>twitter4j-core</artifactId>
+               <version>${twitter4j.core}</version>
+           </dependency>
+       </dependencies>
+   </dependencyManagement>
+    
 
     <dependencies>
         <dependency>
