@@ -27,7 +27,11 @@ public class RodonorteController {
 
     @RequestMapping(value = "/origins", method = RequestMethod.GET)
     @Cacheable(value = "cache", keyGenerator = "keyGenerator")
-    @ApiOperation(value = "Get an origin")
+    @ApiOperation(
+            value = "Get an origin",
+            notes = "Get a list of string with possible origins",
+            response = List.class
+    )
     public WebResult<List<String>> getOrigins(){
         return WebResult.wrap(
                 () -> rodonorte.getOriginList()
@@ -36,6 +40,11 @@ public class RodonorteController {
 
     @RequestMapping(value = "/destiny/{origin}", method = RequestMethod.GET)
     @Cacheable(value = "cache", keyGenerator = "keyGenerator")
+    @ApiOperation(
+            value="Get destiny",
+            notes= "Get a list of possible destiny entries for a given origin",
+            response = List.class
+    )
     public WebResult<List<Destination>> getDestiny(@PathVariable String origin){
         return WebResult.wrap(
                 () -> rodonorte.getDestinations(origin)
@@ -44,6 +53,11 @@ public class RodonorteController {
 
     @RequestMapping(value = "/ride/{origin}/{destiny}", method = RequestMethod.GET)
     @Cacheable(value = "cache", keyGenerator = "keyGenerator")
+    @ApiOperation(
+            value="Get rides",
+            notes="Get a list of possible trips between a given origin and destiny",
+            response = List.class
+    )
     public WebResult<List<Ride>> getRides(@PathVariable String origin, @PathVariable String destiny){
         return WebResult.wrap(
                 () -> rodonorte.getRides(origin,new Destination(0,destiny))

@@ -1,8 +1,13 @@
 package org.pub.pt.data.ws.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -14,29 +19,46 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-@EnableWebMvc
+@Import(BeanValidatorPluginsConfiguration.class)
 public class SwaggerConfig {
+
+    @Value("${swagger.title}")
+    private String swaggerTitle;
+    @Value("${swagger.description}")
+    private String swaggerDescription;
+    @Value("${swagger.contact.name}")
+    private String swaggerContactName;
+    @Value("${swagger.contact.url}")
+    private String swaggerContactURL;
+    @Value("${swagger.contact.email}")
+    private String swaggerContactEmail;
+    @Value("${swagger.license}")
+    private String swaggerLicense;
+    @Value("${swagger.license.url}")
+    private String swaggerLicenseURL;
+    @Value("${app.version}")
+    private String appVersion;
+
 
     @Bean
     public Docket api() {
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors
-                        .basePackage("org.pub.pt.data.ws"))
-                .paths(PathSelectors.regex(".*"))
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
                 .build().apiInfo(apiEndPointsInfo());
 
     }
 
     private ApiInfo apiEndPointsInfo() {
 
-        return new ApiInfoBuilder().title("WEBPT-WS API")
-                .description("A bunch of usefull web services")
-                .contact(new Contact("Balhau", "github.com/balhau", "balhau@balhau.net"))
-                .license("Apache 2.0")
-                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
-                .version("1.0.0")
+        return new ApiInfoBuilder().title(swaggerTitle)
+                .description(swaggerDescription)
+                .contact(new Contact(swaggerContactName, swaggerContactURL, swaggerContactEmail))
+                .license(swaggerLicense)
+                .licenseUrl(swaggerLicenseURL)
+                .version(appVersion)
                 .build();
 
     }
