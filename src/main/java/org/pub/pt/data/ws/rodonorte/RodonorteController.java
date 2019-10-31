@@ -1,5 +1,7 @@
 package org.pub.pt.data.ws.rodonorte;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.pub.pt.data.sources.rodonorte.Rodonorte;
 import org.pub.pt.data.sources.rodonorte.domain.Destination;
 import org.pub.pt.data.sources.rodonorte.domain.Ride;
@@ -15,6 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/ws/rodonorte")
+@Api(value = "Rodonorte bus system")
 public class RodonorteController {
     private Rodonorte rodonorte;
 
@@ -24,6 +27,11 @@ public class RodonorteController {
 
     @RequestMapping(value = "/origins", method = RequestMethod.GET)
     @Cacheable(value = "cache", keyGenerator = "keyGenerator")
+    @ApiOperation(
+            value = "Get an origin",
+            notes = "Get a list of string with possible origins",
+            response = List.class
+    )
     public WebResult<List<String>> getOrigins(){
         return WebResult.wrap(
                 () -> rodonorte.getOriginList()
@@ -32,6 +40,11 @@ public class RodonorteController {
 
     @RequestMapping(value = "/destiny/{origin}", method = RequestMethod.GET)
     @Cacheable(value = "cache", keyGenerator = "keyGenerator")
+    @ApiOperation(
+            value="Get destiny",
+            notes= "Get a list of possible destiny entries for a given origin",
+            response = List.class
+    )
     public WebResult<List<Destination>> getDestiny(@PathVariable String origin){
         return WebResult.wrap(
                 () -> rodonorte.getDestinations(origin)
@@ -40,6 +53,11 @@ public class RodonorteController {
 
     @RequestMapping(value = "/ride/{origin}/{destiny}", method = RequestMethod.GET)
     @Cacheable(value = "cache", keyGenerator = "keyGenerator")
+    @ApiOperation(
+            value="Get rides",
+            notes="Get a list of possible trips between a given origin and destiny",
+            response = List.class
+    )
     public WebResult<List<Ride>> getRides(@PathVariable String origin, @PathVariable String destiny){
         return WebResult.wrap(
                 () -> rodonorte.getRides(origin,new Destination(0,destiny))

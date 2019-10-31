@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.pt.pub.data</groupId>
@@ -10,17 +10,19 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.6.RELEASE</version>
+        <version>2.0.5.RELEASE</version>
     </parent>
 
     <properties>
-        <guava.version>19.0</guava.version>
+        <guava.version>20.0</guava.version>
         <webpt.data>1.0-SNAPSHOT</webpt.data>
         <facebook4j.core>[2.3,)</facebook4j.core>
         <twitter4j.core>[4.0,)</twitter4j.core>
         <java.version>1.8</java.version>
-        <spring.context.support>4.2.3.RELEASE</spring.context.support>
-        <spring.context>4.2.6.RELEASE</spring.context>
+        <springfox.swagger.version>2.9.2</springfox.swagger.version>
+        <springfox.ui.version>2.9.2</springfox.ui.version>
+        <caffeine.version>2.7.0</caffeine.version>
+        <jaxb.api>2.1</jaxb.api>
     </properties>
 
     <repositories>
@@ -48,40 +50,86 @@
         </snapshotRepository>
     </distributionManagement>
 
-<pluginRepositories>
-       <pluginRepository>
-           <id>spring-releases</id>
-           <url>https://repo.spring.io/libs-release</url>
-       </pluginRepository>
-   </pluginRepositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
 
-   <dependencyManagement>
-       <dependencies>
-           <dependency>
-               <groupId>com.google.guava</groupId>
-               <artifactId>guava</artifactId>
-               <version>${guava.version}</version>
-           </dependency>
-           <dependency>
-               <groupId>org.pt.pub.data</groupId>
-               <artifactId>webPtData</artifactId>
-               <version>${webpt.data}</version>
-           </dependency>
-           <dependency>
-               <groupId>org.facebook4j</groupId>
-               <artifactId>facebook4j-core</artifactId>
-               <version>${facebook4j.core}</version>
-           </dependency>
-           <dependency>
-               <groupId>org.twitter4j</groupId>
-               <artifactId>twitter4j-core</artifactId>
-               <version>${twitter4j.core}</version>
-           </dependency>
-       </dependencies>
-   </dependencyManagement>
-    
+    <dependencyManagement>
+
+        <dependencies>
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>${caffeine.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox.swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox.ui.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-bean-validators</artifactId>
+                <version>${springfox.swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.xml</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb.api}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.pt.pub.data</groupId>
+                <artifactId>webPtData</artifactId>
+                <version>${webpt.data}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.facebook4j</groupId>
+                <artifactId>facebook4j-core</artifactId>
+                <version>${facebook4j.core}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.twitter4j</groupId>
+                <artifactId>twitter4j-core</artifactId>
+                <version>${twitter4j.core}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-bean-validators</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
@@ -92,23 +140,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-        <dependency>
-        	<groupId>org.pt.pub.data</groupId>
-  			  <artifactId>webPtData</artifactId>
+            <groupId>org.pt.pub.data</groupId>
+            <artifactId>webPtData</artifactId>
         </dependency>
         <dependency>
             <groupId>org.facebook4j</groupId>

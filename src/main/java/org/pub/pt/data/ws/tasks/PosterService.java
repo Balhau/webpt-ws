@@ -14,7 +14,6 @@ import org.pub.pt.data.sources.quotes.brainyquote.BrainyMessage;
 import org.pub.pt.data.sources.quotes.chucknorris.ChuckNorris;
 import org.pub.pt.data.utilities.Utils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
@@ -28,7 +27,7 @@ import java.util.List;
 @Component
 public class PosterService {
 
-    private static String URL_TOKEN_UPDATER="https://graph.facebook.com/oauth/access_token?client_id=%s&client_secret=%s&grant_type=fb_exchange_token&fb_exchange_token=%s";
+    private static String URL_TOKEN_UPDATER = "https://graph.facebook.com/oauth/access_token?client_id=%s&client_secret=%s&grant_type=fb_exchange_token&fb_exchange_token=%s";
 
     //Facebook auth
     @Value("${facebook.accessToken}")
@@ -56,11 +55,11 @@ public class PosterService {
     //Twitter auth
 
     //@Scheduled(fixedRate = 3600000)
-    private void postFacebookChuckFact() throws Exception{
+    private void postFacebookChuckFact() throws Exception {
 
-        if(facebook == null || twitter== null){
-            facebook=buildFacebook();
-            twitter=buildTwitter();
+        if (facebook == null || twitter == null) {
+            facebook = buildFacebook();
+            twitter = buildTwitter();
         }
 
         List<MessageService> services = new ArrayList<>();
@@ -71,10 +70,10 @@ public class PosterService {
         services.add(new Base());
 
         MessageService service = Utils.pickRandom(services);
-        Message message =service.getMessage();
+        Message message = service.getMessage();
         System.out.println(message);
 
-        String update= message.getMessage()+"\n\n"+ message.getSource();
+        String update = message.getMessage() + "\n\n" + message.getSource();
 
         facebook.postStatusMessage(update);
         twitter.updateStatus(update);
@@ -82,28 +81,28 @@ public class PosterService {
         refreshFacebookTheAuthToken();
     }
 
-    private Twitter buildTwitter(){
+    private Twitter buildTwitter() {
         Twitter twitter = TwitterFactory.getSingleton();
-        twitter.setOAuthConsumer(consumerKey,consumerSecret);
-        twitter.setOAuthAccessToken(new twitter4j.auth.AccessToken(accessToken,accessTokenSecret));
+        twitter.setOAuthConsumer(consumerKey, consumerSecret);
+        twitter.setOAuthAccessToken(new twitter4j.auth.AccessToken(accessToken, accessTokenSecret));
         return twitter;
     }
 
-    private Facebook buildFacebook(){
-        Facebook facebook=new FacebookFactory().getInstance();
+    private Facebook buildFacebook() {
+        Facebook facebook = new FacebookFactory().getInstance();
 
-        facebook.setOAuthAppId(facebookApplicationId,applicationSecret);
+        facebook.setOAuthAppId(facebookApplicationId, applicationSecret);
         facebook.setOAuthPermissions(applicationPermissions);
-        facebook.setOAuthAccessToken(new AccessToken(facebookAccessToken,null));
+        facebook.setOAuthAccessToken(new AccessToken(facebookAccessToken, null));
         return facebook;
     }
 
-    private void refreshFacebookTheAuthToken() throws Exception{
-        Connection connection= Jsoup.connect(String.format(URL_TOKEN_UPDATER,
-                facebookApplicationId,applicationSecret, facebookAccessToken
-                ));
-        Document doc=connection.get();
-        String out=doc.text();
-        facebookAccessToken =out.split("=")[1].split("&")[0];
+    private void refreshFacebookTheAuthToken() throws Exception {
+        Connection connection = Jsoup.connect(String.format(URL_TOKEN_UPDATER,
+                facebookApplicationId, applicationSecret, facebookAccessToken
+        ));
+        Document doc = connection.get();
+        String out = doc.text();
+        facebookAccessToken = out.split("=")[1].split("&")[0];
     }
 }
