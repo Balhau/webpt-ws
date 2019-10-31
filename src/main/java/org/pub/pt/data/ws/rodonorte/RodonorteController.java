@@ -1,5 +1,7 @@
 package org.pub.pt.data.ws.rodonorte;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.pub.pt.data.sources.rodonorte.Rodonorte;
 import org.pub.pt.data.sources.rodonorte.domain.Destination;
 import org.pub.pt.data.sources.rodonorte.domain.Ride;
@@ -15,6 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/ws/rodonorte")
+@Api(value = "Rodonorte bus system")
 public class RodonorteController {
     private Rodonorte rodonorte;
 
@@ -24,6 +27,7 @@ public class RodonorteController {
 
     @RequestMapping(value = "/origins", method = RequestMethod.GET)
     @Cacheable(value = "cache", keyGenerator = "keyGenerator")
+    @ApiOperation(value = "Get an origin")
     public WebResult<List<String>> getOrigins(){
         return WebResult.wrap(
                 () -> rodonorte.getOriginList()
